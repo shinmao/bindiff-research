@@ -11,7 +11,10 @@ The format would be sorted in ascending order on published year or month. The co
 * Future work:  
 
 ### PatchScope: Memory Object Centric Patch Diffing (CCS 20)
-* Goal:  
-* Assumption:  
-* Core idea:  
+* Goal: A new way of patch diffing to make insight of patch details and fixed vulnerabilities (memory corruption based).  
+* Assumption: Given PoC  
+* Core idea:
+  * Compare **memory object access sequence(MOAS)** to understand the details of patch more concisely than difference at assembly-level  
 * Future work:  
+
+> By Rafael. Cool! But without source code to prove implementation.
