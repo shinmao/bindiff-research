@@ -26,3 +26,26 @@ The format would be sorted in ascending order on published year or month. The co
 * Future work:  
 
 > By Rafael. Cool! But without source code to prove implementation.
+
+# Binary Analysis Research
+This is the draft for the repo (bindiff-research) on GitHub, maintained by Rafael Chen & Xu He.
+## Literature review
+### Similarity of Binaries through re-Optimization (PLDI 17)
+* Goal: establish similarity of binary, which is complication-process-agnostic (different compiler, optimization level, and architectures)
+
+![](./screenshot/similarity re-Optimization.png)
+
+* Core idea:
+  * lift the binary code / assembly code into IR code (LLVM-IR).
+  * Fragment procedures to comparable units (strands), which is data-flow slices of basic blocks.
+  * Canonicalize strands at IR level. 
+    * revert the lifter-imposed changes
+    * simplify the expression of instruction patterns (e.g., mov, add --> add)
+  * Normalize form. 
+    * immaterialize the specific name of the register
+    * renumber or remove the temporary values
+  * Scalable search using hashed canonical strands. 
+    * Hashing of the textual representation of the strands
+  * Determine the statistical significance of a strand.
+
+>Canonicalization and normalization is used to eliminate the impact of compilation process.
