@@ -18,23 +18,9 @@ The format would be sorted in ascending order on published year or month. The co
 
 ![](./screenshot/spain.png)
 
-### PatchScope: Memory Object Centric Patch Diffing (CCS 20)
-* Goal: A new way of patch diffing to make insight of patch details and fixed vulnerabilities (memory corruption based).  
-* Assumption: Given PoC  
-* Core idea:
-  * Compare **memory object access sequence(MOAS)** to understand the details of patch more concisely than difference at assembly-level  
-* Future work:  
 
-> By Rafael. Cool! But without source code to prove implementation.
-
-# Binary Analysis Research
-This is the draft for the repo (bindiff-research) on GitHub, maintained by Rafael Chen & Xu He.
-## Literature review
 ### Similarity of Binaries through re-Optimization (PLDI 17)
 * Goal: establish similarity of binary, which is complication-process-agnostic (different compiler, optimization level, and architectures)
-
-![](./screenshot/similarity%20re-Optimization.png)
-
 * Core idea:
   * lift the binary code / assembly code into IR code (LLVM-IR).
   * Fragment procedures to comparable units (strands), which is data-flow slices of basic blocks.
@@ -48,4 +34,16 @@ This is the draft for the repo (bindiff-research) on GitHub, maintained by Rafae
     * Hashing of the textual representation of the strands
   * Determine the statistical significance of a strand.
 
->Canonicalization and normalization is used to eliminate the impact of compilation process.
+![](./screenshot/similarity%20re-Optimization.png)
+
+> By Xu He. Canonicalization and normalization is used to eliminate the impact of compilation process.
+
+### PatchScope: Memory Object Centric Patch Diffing (CCS 20)
+* Goal: A new way of patch diffing to make insight of patch details and fixed vulnerabilities (memory corruption based).  
+* Assumption: Given PoC  
+* Core idea:
+  * Compare **memory object access sequence(MOAS)** to understand the details of patch more concisely than difference at assembly-level  
+* Future work:  
+
+> By Rafael. Cool! But without source code to prove implementation.
+
