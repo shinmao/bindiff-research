@@ -33,7 +33,7 @@ This is the draft for the repo (bindiff-research) on GitHub, maintained by Rafae
 ### Similarity of Binaries through re-Optimization (PLDI 17)
 * Goal: establish similarity of binary, which is complication-process-agnostic (different compiler, optimization level, and architectures)
 
-![](./screenshot/similarity re-Optimization.png)
+![](./screenshot/similarity%20re-Optimization.png)
 
 * Core idea:
   * lift the binary code / assembly code into IR code (LLVM-IR).
