@@ -45,5 +45,11 @@ The format would be sorted in ascending order on published year or month. The co
   * Compare **memory object access sequence(MOAS)** to understand the details of patch more concisely than difference at assembly-level  
 * Future work:  
 
+PatchScope mentioned some interesting comparison on existing work for binary diff:  
+| Syntax-based | Symbolic execution | Semantics-aware |
+| ---         |     ---     |          --- |
+| Small code changes cannot be detected while large diff include a lot of irrelevant content. Briefly speaking, it would raise a lot of false positives.   | Can start from source code level or binary level. Leverage static analysis to locate patched function because it works within basic block.     | Identify system calls or API calls to represent program semantics, but it would be so coarse-grained because small code changes with security patches.    |
+| Dynamic Execution can filter irrelative code changes. However, it would possibly result in more instructions and cannot help understanding.     | The output of symbolic execution is hard for understanding the patch.       | Or using dynamic testing to compare behaviors for similarity measurement.      |
+
 > By Rafael. Cool! But without source code to prove implementation.
 
