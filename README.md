@@ -53,3 +53,10 @@ PatchScope mentioned some interesting comparison on existing work for binary dif
 
 > By Rafael. Cool! But without source code to prove implementation.
 
+## Personal Summary by Rafael
+### For static analysis
+We would need to figure out the stuff in binary-level, recover semantics information. 
+
+### For dynamic analysis
+It's easy for us to trace the behavior (semantics) of program. However, the code size in trace would be larger if you can not identify the behavior accurately. For example, if you trace loop dynamically, the code size would be multiple of original one. In this way, you would need to identify this is a loop behavior.
+
