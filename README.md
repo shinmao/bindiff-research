@@ -7,9 +7,20 @@ The summary in this repo **should not be enough** for you to understand the deta
 The format would be sorted in ascending order on published year or month. The content should include goal, assumption, contribution, future work, and the core idea (some techniques can be included but not all details) of the paper.
 
 ### Cross-Architecture Binary Semantics Understanding via Similar Code Comparison (SANER 16)
-* Goal: Semantic-based Binary Code Similarity. Given specific function in template binary, locate the most similar one in target binary (This work is later used by BINPATCH[2] to locate defective function)
-* Core idea
+* Goal: Semantic-based Binary Code Similarity. Given specific function in template binary, locate the most similar one in target binary (This work is later used by BINPATCH[2] to locate defective function) Target binary would be same code base with different architectures or different optimization level.
+* Core idea: Semantic-similar functions are executed with the same input, the possibility that observed behaviors are similar is high. Based on VEX-IR, two dynamic features (COP + SCA) which can be less influenced by the implementation variance or instruction set difference.
+  * Comparison Operand Pairs (COP): a pair of operand **values** belonging to comparison instruction which can decides the following control flow.
+  * System Call Attributes (SCA): contains name of syscall and arguments. e.g. `("sys_write", Hash("1, tag, 10"))` (I would explain the tag in normalization part later).
+  * Normalization: Of course some type of concrete values are not meaningful. (1) Pointer abstraction because the value of memory address is not important. Same memory address share the same tag. (2) Canary Removal because the comparison operation for canary is not important. (3) Boundary Unification because some comparison are same actually even though with different operators (4) Loop Compression because execution trace of loop body would be large.
+  * Sequence similarity comparison: Longest Common Subsequence to get Jaccard Index (what's interesting is that how they filter out something not need to be checked before comparison)
+* Limitation:
+  * function inline on x86: which would insert junk data to other functions
+  * float point number porocessing on x86: float number processing would work on FPU stack, which would include condition comparisons and make COP feature confused.
+  * how if function is short of conditional comparison.
+  * how to construct input
 * Future work
+  * To construct input, try concolic execution and fuzzing testing.
+  * For efficient sequence comparison, adopt MinHash which could estimate Jaccard Index quickly.
 
 Reference: 
 1. https://ieeexplore.ieee.org/document/7476630
