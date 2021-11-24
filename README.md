@@ -6,6 +6,15 @@ The summary in this repo **should not be enough** for you to understand the deta
 ## Literature review
 The format would be sorted in ascending order on published year or month. The content should include goal, assumption, contribution, future work, and the core idea (some techniques can be included but not all details) of the paper.
 
+### Cross-Architecture Binary Semantics Understanding via Similar Code Comparison (SANER 16)
+* Goal: Semantic-based Binary Code Similarity. Given specific function in template binary, locate the most similar one in target binary (This work is later used by BINPATCH[2] to locate defective function)
+* Core idea
+* Future work
+
+Reference: 
+1. https://ieeexplore.ieee.org/document/7476630
+2. https://ieeexplore.ieee.org/document/8653831
+
 ### SPAIN: Security Patch Analysis for Binaries Towards Understanding the Pain and Pills (ICSE 2017)
 * Goal: a scalable binary-level patch analysis framework which can automatically identify security patches and summarize patch patterns and their corresponding vulnerability patterns.  
 * Assumtion: patch would change only single function, the results of IDA pro and Bindiff would be accurate   
