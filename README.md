@@ -70,7 +70,12 @@ Reference:
     * Construct correlation between referenced mem obj and inputs with taint tags.
   * **Memory object access sequence(MOAS)** construction with root pointer, calling context, data-flow-related opcode, access type, correlated input field which are addressed by the same root pointer.
   * Compare MOAS on same PoC to understand the details of patch more concisely than difference at assembly-level (Most patches for memory-safety vuls are based on the changes to the way accessing to the input). LCS doesn't deliver meaningful alignment. Therefore, use Smith-Waterman algorithm.  
-* Evaluation
+* Evaluation:
+  * Dataset includes 37 applications with ground truth and 8 applications without patchfile. (These 8 applications can be used to evaluate the efficiency of PatchScope to help analysis)
+  * Compared with BinDiff, Diaphora, DarunGrim, DeepBinDiff, CoP, BinSim, BLEX.
+    * PatchScope and DeepBinDiff identify much fewer(more relevant) patch difference than others. (DeepBinDiff fails to identify more difference than PatchScope)
+    * BinDiff, Diaphora, DarunGrim, and BLEX suffer from a large number of asm diff if size of patch is big
+    * Code representation of BinSim to trace API/syscall is too coarse-grained to fit patch analysis
 * Future work:  
 
 PatchScope mentioned some interesting comparison on existing work for binary diff:  
@@ -86,5 +91,6 @@ PatchScope mentioned some interesting comparison on existing work for binary dif
 We would need to figure out the stuff in binary-level, recover semantics information. 
 
 ### For dynamic analysis
-It's easy for us to trace the behavior (semantics) of program. However, the code size in trace would be larger if you can not identify the behavior accurately. For example, if you trace loop dynamically, the code size would be multiple of original one. In this way, you would need to identify this is a loop behavior.
+It's easy for us to trace the behavior (semantics) of program. However, the code size in trace would be larger if you can not identify the behavior accurately. For example, if you trace loop dynamically, the code size would be multiple of original one, then the differences would also be duplicated. In this way, you would need to identify this is a loop behavior.  
+Dynamic analysis based on PoC can filter out the irrelevant differences, but may also miss relevant one due to incomplete coverage.
 
