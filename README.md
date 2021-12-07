@@ -62,7 +62,15 @@ Reference:
 * Goal: A new way of patch diffing to make insight of patch details and fixed vulnerabilities (memory corruption based).  
 * Assumption: Given PoC  
 * Core idea:
-  * Compare **memory object access sequence(MOAS)** to understand the details of patch more concisely than difference at assembly-level  
+  * To find out the correlations between mem obj and input, fine-grained tainting each input byte with a unique taint tag and taint propagation. (Need to intercept libraries calls of mem allocation, e.g. malloc)
+  * Excavate mem obj by mem access pattern.
+    * Root pointer extraction: Pointer of mem obj allocation. Variable on heap, local variable on stack.
+    * Mem obj size inference: Some are indicated by parameter. Variables can be calculated by interval of two contiguous root pointers.
+    * Tracking pointer propagation: Extract the reference to mem obj, it's challenging because mem alias or registers can be used as de-references. Therefore, track all data movement and any arithmetic calculations (addr calculation) on root pointers.
+    * Construct correlation between referenced mem obj and inputs with taint tags.
+  * **Memory object access sequence(MOAS)** construction with root pointer, calling context, data-flow-related opcode, access type, correlated input field which are addressed by the same root pointer.
+  * Compare MOAS on same PoC to understand the details of patch more concisely than difference at assembly-level (Most patches for memory-safety vuls are based on the changes to the way accessing to the input). LCS doesn't deliver meaningful alignment. Therefore, use Smith-Waterman algorithm.  
+* Evaluation
 * Future work:  
 
 PatchScope mentioned some interesting comparison on existing work for binary diff:  
