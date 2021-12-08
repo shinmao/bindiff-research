@@ -75,8 +75,13 @@ Reference:
   * Compared with BinDiff, Diaphora, DarunGrim, DeepBinDiff, CoP, BinSim, BLEX.
     * PatchScope and DeepBinDiff identify much fewer(more relevant) patch difference than others. (DeepBinDiff fails to identify more difference than PatchScope)
     * BinDiff, Diaphora, DarunGrim, and BLEX suffer from a large number of asm diff if size of patch is big
-    * Code representation of BinSim to trace API/syscall is too coarse-grained to fit patch analysis
+    * Code representation of BinSim to trace API/syscall is too coarse-grained to fit patch analysis (BinSim has a high FN)
+    * BLEX has highest FP because it identified all memory access behaviors
+    * PatchScope has the least FN
+   * If PoC doesn't trigger the vulnerabilities, PatchScope is not able to locate the diff.
 * Future work:  
+  * Currently only working on memory corruption, other types such as permission bypassing in future work
+  * Currently only working on x86 because of DECAF which is used for dynamic taint and execution trace monitoring.
 
 PatchScope mentioned some interesting comparison on existing work for binary diff:  
 | Syntax-based | Symbolic execution | Semantics-aware |
