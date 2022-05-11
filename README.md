@@ -99,3 +99,6 @@ We would need to figure out the stuff in binary-level, recover semantics informa
 It's easy for us to trace the behavior (semantics) of program. However, the code size in trace would be larger if you can not identify the behavior accurately. For example, if you trace loop dynamically, the code size would be multiple of original one, then the differences would also be duplicated. In this way, you would need to identify this is a loop behavior.  
 Dynamic analysis based on PoC can filter out the irrelevant differences, but may also miss relevant one due to incomplete coverage.
 
+## Reading list
+* [SystemSecurityStorm/Awesome-Binary-Similarity](https://github.com/SystemSecurityStorm/Awesome-Binary-Similarity)
+
